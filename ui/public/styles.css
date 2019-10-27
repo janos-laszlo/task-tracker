@@ -1,0 +1,46 @@
+body {
+  margin: 0;
+  font-family: "Lato", sans-serif;
+  overflow-y: scroll;
+}
+
+.btn {
+  padding: 5px 10px;
+  border: 1px solid #27578f;
+  background: #f4e0e2;
+  color: #27578f;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background: #f4e0e2;
+  color: #63809e;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 5px 10px;
+  border: 1px solid #27578f;
+  background: white;
+  border-radius: 4px;
+  box-sizing: border-box;
+  outline: none;
+  color: #27578f;
+}
+
+input[type="text"]:focus {
+  border: 1px solid #1b9c8b;
+}
+
+.btn-positive {
+  background: #1b9c8b;
+}
+
+.btn-negative {
+  background: #63809e;
+}
+
+datetime .year-month-wrapper {
+  background-color: #43afe3;
+}
