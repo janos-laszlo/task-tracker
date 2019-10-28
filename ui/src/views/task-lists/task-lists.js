@@ -1,7 +1,8 @@
 import AddItem from '@/components/add-item/add-item.vue';
 import ConfirmationDialog from '@/components/confirmation-dialog/confirmation-dialog.vue';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import TtCheckbox from '@/components/checkbox/checkbox.vue';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { mapActions } from 'vuex';
 import draggable from 'vuedraggable'
@@ -13,6 +14,7 @@ export default {
   components: {
     AddItem,
     ConfirmationDialog,
+    TtCheckbox,
     FontAwesomeIcon,
     draggable
   },

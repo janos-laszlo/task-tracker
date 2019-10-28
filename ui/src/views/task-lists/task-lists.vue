@@ -2,14 +2,15 @@
   <div>
     <h3 style="text-align: center">Task lists</h3>
     <div id="task-list-container">
-      <div>
-        <input type="checkbox" @change="onSortingChanged" style="width: 20px; height: 20px;" />
-        <span style="position: relative; bottom: 5px;">Enable Sorting</span>
+      <p v-if="!taskLists.length">Empty here...</p>
+      <div v-if="taskLists.length">
+        <tt-checkbox @change="onSortingChanged"></tt-checkbox>
+        <span style="position: relative; bottom: 10px;">Enable sorting</span>
       </div>
       <draggable v-model="taskLists" :disabled="sortingDisabled">
         <div class="task-list" v-for="taskList in taskLists" v-bind:key="taskList.id">
           <h4 style="width: calc(100% - 24px); display: inline-block">{{taskList.title}}</h4>
-          <span style="margin-left: 10px;" v-on:click="openDeleteTaskList(taskList.id)">
+          <span class="delete-icon" v-on:click="openDeleteTaskList(taskList.id)">
             <font-awesome-icon icon="trash" />
           </span>
         </div>
