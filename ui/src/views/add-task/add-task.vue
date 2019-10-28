@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <h3>Add Task</h3>
-    <form>
-      <input type="text" placeholder="Task..." />
+    <form @submit="onSubmit">
+      <input type="text" placeholder="Task..." v-model="title"/>
       <h4 style="margin-bottom: 5px;">
         <span style="margin-right: 5px">Remind me</span>
         <!-- Remind me -->

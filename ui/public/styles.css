@@ -11,6 +11,7 @@ body {
   color: #27578f;
   border-radius: 4px;
   font-weight: bold;
+  height: 40px;
 }
 
 .btn:hover {

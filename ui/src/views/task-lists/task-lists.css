@@ -1,0 +1,10 @@
+div {
+  color: #27578f;
+}
+
+.task-list {
+  padding: 0px 10px;
+  border: 1px solid #1b9c8b;
+  border-radius: 4px;
+  margin: 10px 0;
+}

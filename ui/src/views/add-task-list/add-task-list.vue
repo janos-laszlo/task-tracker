@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <h3>Add Task List</h3>
-    <form>
-      <input type="text" placeholder="Name..." />
+    <form v-on:submit="onSubmit">
+      <input type="text" placeholder="Name..." v-model="title"/>
       <div style="margin-top: 5px">
         <input
           type="submit"
