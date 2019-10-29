@@ -16,7 +16,8 @@ export default {
   },
   methods: {
     ...mapActions(['addTaskList']),
-    onSubmit
+    onSubmit,
+    cancel
   },
 };
 
@@ -25,4 +26,8 @@ function onSubmit(e){
   this.addTaskList(this.title);
   this.$router.push('/');
   
+}
+
+function cancel() {
+  this.$router.push('/');
 }

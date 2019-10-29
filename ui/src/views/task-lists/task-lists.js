@@ -4,7 +4,7 @@ import TtCheckbox from '@/components/checkbox/checkbox.vue';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import draggable from 'vuedraggable'
 
 library.add([faTrash, faEdit]);
@@ -25,18 +25,21 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['fetchTaskLists', 'deleteTaskList']),
+    ...mapActions(['fetchTaskLists', 'deleteTaskList', 'setTaskLists']),
     openDeleteTaskList,
     onDeleteTaskList,
-    onSortingChanged    
+    onSortingChanged,
+    goToAddTaskList,
+    toggleOrdering
   },
   computed: {
+    ...mapGetters(['allTaskLists']),
     taskLists: {
       get() {
-        return this.$store.state.taskLists.taskLists;
+        return this.allTaskLists;
       },
-      set(value){
-        this.$store.commit('setTaskLists', value);
+      set(newTaskList) {
+        this.setTaskLists(newTaskList);
       }
     }
   },
@@ -55,6 +58,14 @@ function onDeleteTaskList() {
   this.deleteTaskList(this.taskToDeleteId);
 }
 
-function onSortingChanged(e){
+function onSortingChanged(e) {
   this.sortingDisabled = !e.target.checked;
+}
+
+function goToAddTaskList() {
+  this.$router.push('add-task-list');
+}
+
+function toggleOrdering() {
+  this.sortingDisabled = !this.sortingDisabled;
 }

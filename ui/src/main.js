@@ -4,6 +4,7 @@ import Router from './router.js'
 import store from './store';
 
 Vue.config.productionTip = false
+Vue.use(require('vue-shortkey'));
 
 new Vue({
   store,

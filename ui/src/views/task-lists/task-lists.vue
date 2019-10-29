@@ -3,7 +3,7 @@
     <h3 style="text-align: center">Task lists</h3>
     <div id="task-list-container">
       <div v-if="taskLists.length">
-        <tt-checkbox @change="onSortingChanged" text="Enable sorting">Enable sorting</tt-checkbox>
+        <tt-checkbox :checked="!sortingDisabled" @change="onSortingChanged" v-shortkey="['ctrl', 'o']" @shortkey.native="toggleOrdering">Toggle ordering</tt-checkbox>
       </div>
       <p v-else>Empty here...</p>
       <draggable v-model="taskLists" :disabled="sortingDisabled">
@@ -22,7 +22,11 @@
       <div style="height: 40px"></div>
       <confirmation-dialog v-if="showModal" @close="showModal = false" @yes="onDeleteTaskList"></confirmation-dialog>
     </div>
-    <router-link to="add-task-list">
+    <router-link
+      to="add-task-list"
+      v-shortkey="['ctrl', 'space']"
+      @shortkey.native="goToAddTaskList"
+    >
       <add-item></add-item>
     </router-link>
   </div>
