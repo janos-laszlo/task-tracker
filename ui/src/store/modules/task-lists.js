@@ -4,20 +4,26 @@ const state = {
     taskLists: []
 };
 
+const getters = {
+    getTaskList: (state) => (id) => state.taskLists.find(t => t.id === id)
+};
+
 const actions = {
     fetchTaskLists,
     addTaskList,
-    deleteTaskList
+    deleteTaskList,
+    updateTaskList
 };
 
 const mutations = {
     setTaskLists: (state, taskLists) => state.taskLists = taskLists,
     newTaskList,
-    removeTaskList
+    removeTaskList, 
+    editedTaskList
 };
 
 export default {
-    state, actions, mutations
+    state, getters, actions, mutations
 }
 
 async function fetchTaskLists({ commit }) {
@@ -45,4 +51,13 @@ function deleteTaskList({ commit }, id) {
 function removeTaskList(state, id) {
     const index = state.taskLists.findIndex(t => t.id === id);
     state.taskLists.splice(index, 1);
+}
+
+function updateTaskList({commit}, editedTaskList){
+    commit('editedTaskList', editedTaskList);    
+}
+
+function editedTaskList(state, editedTaskList){
+    const tl = state.taskLists.find(t => t.id === editedTaskList.id);
+    tl.title = editedTaskList.title;
 }

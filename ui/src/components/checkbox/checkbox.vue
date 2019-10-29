@@ -1,8 +1,11 @@
 <template>
-  <div class="container">
+  <div>
     <label class="check">
-      <input type="checkbox" v-on:change="$emit('change', $event)"/>
+      <input type="checkbox" v-on:change="$emit('change', $event)" id="sort"/>
       <div class="box"></div>
+    </label>
+    <label for="sort" style="position: relative; bottom: 5px; margin-left: 5px;">
+      <slot></slot>
     </label>
   </div>
 </template>

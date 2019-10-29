@@ -9,20 +9,23 @@ export default {
   },
   directives: {
     focus: {
-      inserted: function(el){
+      inserted: function (el) {
         el.focus();
       }
     }
   },
   methods: {
-    ...mapActions(['addTaskList']),
+    ...mapActions(['addTaskList', 'updateTaskList']),
     onSubmit
   },
+  created() {
+    this.title = this.$store.getters.getTaskList(this.$route.params.id).title;
+  }
 };
 
-function onSubmit(e){
+function onSubmit(e) {
   e.preventDefault();
-  this.addTaskList(this.title);
+  this.updateTaskList({ id: this.$route.params.id, title: this.title });
   this.$router.push('/');
-  
+
 }

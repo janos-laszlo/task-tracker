@@ -43,11 +43,14 @@ input[type="text"]:focus {
   background: #63809e;
 }
 
-.delete-icon {
+.icon {
   margin-left: 10px;
 }
 
-.delete-icon:hover {
+.icon:hover {
   color: #f4e0e2;
   cursor: pointer;
+}
+a {
+  color: #27578f;
 }

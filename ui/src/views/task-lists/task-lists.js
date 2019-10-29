@@ -2,12 +2,12 @@ import AddItem from '@/components/add-item/add-item.vue';
 import ConfirmationDialog from '@/components/confirmation-dialog/confirmation-dialog.vue';
 import TtCheckbox from '@/components/checkbox/checkbox.vue';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { mapActions } from 'vuex';
 import draggable from 'vuedraggable'
 
-library.add(faTrash);
+library.add([faTrash, faEdit]);
 
 export default {
   name: 'task-lists',
@@ -28,7 +28,7 @@ export default {
     ...mapActions(['fetchTaskLists', 'deleteTaskList']),
     openDeleteTaskList,
     onDeleteTaskList,
-    onSortingChanged
+    onSortingChanged    
   },
   computed: {
     taskLists: {
