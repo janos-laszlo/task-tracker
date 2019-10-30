@@ -61,6 +61,8 @@
 
 .logo {
   height: 41px;
+  bottom: 9px;
+  position: relative;
 }
 
 @media screen and (min-width: 601px) {
@@ -78,7 +80,7 @@
   }
   .topnav.responsive {
     position: relative;
-    height: 150px;
+    height: 180px;
   }
   .topnav.responsive a {
     float: none;

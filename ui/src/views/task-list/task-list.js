@@ -8,7 +8,10 @@ export default {
   },
   data() {
     return {
-      taskList: null
+      taskList: {
+        title: '',
+        tasks: []
+      }
     }
   },
   methods: {

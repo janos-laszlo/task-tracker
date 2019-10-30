@@ -11,7 +11,7 @@
     </div>
     <p v-else>Empty here...</p>
     <router-link
-      :to="{ path: `/add-task/${$route.params.id}` }"
+      :to="`/add-task/${taskList.id}`"
       v-shortkey="['ctrl', 'space']"
       @shortkey.native="goToAddTask"
     >

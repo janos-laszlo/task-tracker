@@ -13,7 +13,7 @@
       <p v-else>Empty here...</p>
       <draggable v-model="taskLists" :disabled="sortingDisabled">
         <div class="task-list" v-for="(taskList, index) in taskLists" v-bind:key="taskList.id">
-          <router-link :to="'task-list/' + taskList.id">
+          <router-link :to="`/task-list/${taskList.id}`">
             <div class="task-list-name">
               <h4>{{taskList.title}}</h4>
             </div>
