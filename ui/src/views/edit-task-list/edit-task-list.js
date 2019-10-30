@@ -1,7 +1,7 @@
 import { mapActions } from 'vuex';
 
 export default {
-  name: "add-task-list",
+  name: "edit-task-list",
   data() {
     return {
       title: ''
@@ -16,7 +16,8 @@ export default {
   },
   methods: {
     ...mapActions(['addTaskList', 'updateTaskList']),
-    onSubmit
+    onSubmit,
+    cancel
   },
   created() {
     this.title = this.$store.getters.getTaskList(this.$route.params.id).title;
@@ -28,4 +29,8 @@ function onSubmit(e) {
   this.updateTaskList({ id: this.$route.params.id, title: this.title });
   this.$router.push('/');
 
+}
+
+function cancel() {
+  this.$router.push('/');
 }

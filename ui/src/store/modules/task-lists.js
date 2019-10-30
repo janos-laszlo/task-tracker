@@ -6,20 +6,23 @@ const store = {
   },
   getters: {
     allTaskLists: (state) => state.taskLists,
-    getTaskList: (state) => (id) => state.taskLists.find(t => t.id === id)
+    getTaskList: (state) => (id) => state.taskLists.find(t => t.id === id),
+    getTasks: (state) => (id) => state.taskLists.find(t => t.id === id).tasks
   },
   actions: {
     fetchTaskLists,
     addTaskList,
     deleteTaskList,
     updateTaskList,
-    setTaskLists
+    setTaskLists,
+    addTask
   },
   mutations: {
     setTaskLists: (state, taskLists) => state.taskLists = taskLists,
     newTaskList,
     removeTaskList,
-    editedTaskList
+    editedTaskList,
+    newTask
   }
 };
 
@@ -36,7 +39,7 @@ async function fetchTaskLists({ commit }) {
 }
 
 function addTaskList({ commit }, title) {
-  const newTaskList = { id: id++, title };
+  const newTaskList = { id: id++, title, tasks: [] };
   commit('newTaskList', newTaskList);
 }
 
@@ -51,6 +54,10 @@ function deleteTaskList({ commit }, id) {
 function setTaskLists(context, newTaskLists){
   // save new task list in the backend
   context.commit('setTaskLists', newTaskLists);
+}
+
+function addTask(context, task) {
+  context.commit('newTask', task);
 }
 // mutations
 
@@ -68,4 +75,8 @@ function removeTaskList(state, id) {
 function editedTaskList(state, editedTaskList) {
   const tl = state.taskLists.find(t => t.id === editedTaskList.id);
   tl.title = editedTaskList.title;
+}
+
+function newTask(state, task){
+  state.taskLists.find(t => t.id === task.id).tasks.push(task);
 }

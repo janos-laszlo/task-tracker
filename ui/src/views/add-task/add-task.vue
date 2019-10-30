@@ -2,7 +2,7 @@
   <div class="container">
     <h3>Add Task</h3>
     <form @submit="onSubmit">
-      <input type="text" placeholder="Task..." v-model="title"/>
+      <input type="text" placeholder="Task..." v-model="title" />
       <h4 style="margin-bottom: 5px;">
         <span style="margin-right: 5px">Remind me</span>
         <!-- Remind me -->
@@ -16,9 +16,9 @@
           class="btn btn-positive"
           style="margin-right: 5px; width: calc(50% - 5px)"
         />
-        <router-link to="/">
-          <button class="btn btn-negative" style="width: 50%">Cancel</button>
-        </router-link>
+        <!-- <router-link :to="`/task-list/${$route.params.id}`"> -->
+          <button class="btn btn-negative" style="width: 50%" @click="cancel">Cancel</button>
+        <!-- </router-link> -->
       </div>
     </form>
   </div>

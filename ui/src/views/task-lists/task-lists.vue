@@ -1,20 +1,38 @@
 <template>
   <div>
-    <h3 style="text-align: center">Task lists</h3>
+    <h3 class="page-title">Task lists</h3>
     <div id="task-list-container">
       <div v-if="taskLists.length">
-        <tt-checkbox :checked="!sortingDisabled" @change="onSortingChanged" v-shortkey="['ctrl', 'o']" @shortkey.native="toggleOrdering">Toggle ordering</tt-checkbox>
+        <tt-checkbox
+          :checked="!sortingDisabled"
+          @change="onSortingChanged"
+          v-shortkey="['ctrl', 'o']"
+          @shortkey.native="toggleOrdering"
+        >Toggle ordering</tt-checkbox>
       </div>
       <p v-else>Empty here...</p>
       <draggable v-model="taskLists" :disabled="sortingDisabled">
-        <div class="task-list" v-for="taskList in taskLists" v-bind:key="taskList.id">
-          <h4 style="width: calc(100% - 55px); display: inline-block">{{taskList.title}}</h4>
-          <router-link :to="{name: 'edit-task-list', params: {id: taskList.id}}">
+        <div class="task-list" v-for="(taskList, index) in taskLists" v-bind:key="taskList.id">
+          <router-link :to="'task-list/' + taskList.id">
+            <div class="task-list-name">
+              <h4>{{taskList.title}}</h4>
+            </div>
+          </router-link>
+          <router-link
+            :to="{name: 'edit-task-list', params: {id: taskList.id}}"
+            v-shortkey="['ctrl', 'alt', index + 1]"
+            @shortkey.native="goToEditTaskList(taskList.id)"
+          >
             <span class="icon">
               <font-awesome-icon icon="edit" />
             </span>
           </router-link>
-          <span class="icon" v-on:click="openDeleteTaskList(taskList.id)">
+          <span
+            class="icon"
+            v-on:click="openDeleteTaskList(taskList.id)"
+            v-shortkey="['alt', index + 1]"
+            @shortkey="openDeleteTaskList(taskList.id)"
+          >
             <font-awesome-icon icon="trash" />
           </span>
         </div>

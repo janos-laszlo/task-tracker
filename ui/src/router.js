@@ -3,6 +3,8 @@ import Router from 'vue-router';
 import TaskLists from './views/task-lists/task-lists.vue';
 import AddTaskList from './views/add-task-list/add-task-list.vue';
 import EditTaskList from './views/edit-task-list/edit-task-list.vue';
+import TaskList from './views/task-list/task-list.vue';
+import AddTask from './views/add-task/add-task.vue';
 
 Vue.use(Router);
 
@@ -23,6 +25,16 @@ export default new Router({
       path: '/edit-task-list',
       name: 'edit-task-list',
       component: EditTaskList
+    },
+    {
+      path: '/task-list/:id',
+      name: 'task-list',
+      component: TaskList
+    },
+    {
+      path: '/add-task/:id',
+      name: 'add-task',
+      component: AddTask,
     }
   ]
 });

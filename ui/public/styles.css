@@ -54,3 +54,7 @@ input[type="text"]:focus {
 a {
   color: #27578f;
 }
+
+.page-title {
+  text-align: center;
+}

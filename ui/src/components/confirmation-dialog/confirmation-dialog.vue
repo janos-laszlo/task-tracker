@@ -11,8 +11,8 @@
 
           <div class="modal-footer">
             <slot name="footer">
-              <button class="btn btn-positive" style="margin-right: 10px" @click="$emit('yes')">Yes</button>
-              <button class="btn btn-negative" @click="$emit('close')">No</button>
+              <button class="btn btn-positive" style="margin-right: 10px" @click="$emit('yes')" v-shortkey="['enter']" @shortkey="$emit('yes')">Yes</button>
+              <button class="btn btn-negative" @click="$emit('close')" v-shortkey="['esc']" @shortkey="$emit('close')">No</button>
             </slot>
           </div>
         </div>

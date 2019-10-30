@@ -8,3 +8,12 @@ div {
   border-radius: 4px;
   margin: 10px 0;
 }
+
+.task-list-name {
+  width: calc(100% - 55px);
+  display: inline-block;
+}
+
+.task-list-name:hover h4 {
+  text-decoration: underline;
+}

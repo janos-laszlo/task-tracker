@@ -30,7 +30,8 @@ export default {
     onDeleteTaskList,
     onSortingChanged,
     goToAddTaskList,
-    toggleOrdering
+    toggleOrdering,
+    goToEditTaskList
   },
   computed: {
     ...mapGetters(['allTaskLists']),
@@ -58,8 +59,8 @@ function onDeleteTaskList() {
   this.deleteTaskList(this.taskToDeleteId);
 }
 
-function onSortingChanged(e) {
-  this.sortingDisabled = !e.target.checked;
+function onSortingChanged(checked) {
+  this.sortingDisabled = !checked;
 }
 
 function goToAddTaskList() {
@@ -68,4 +69,8 @@ function goToAddTaskList() {
 
 function toggleOrdering() {
   this.sortingDisabled = !this.sortingDisabled;
+}
+
+function goToEditTaskList(id) {
+  this.$router.push({ name: 'edit-task-list', params: { id } });
 }

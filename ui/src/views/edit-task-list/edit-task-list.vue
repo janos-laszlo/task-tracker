@@ -10,7 +10,7 @@
           class="btn btn-positive"
           style="margin-right: 5px; width: calc(50% - 5px)"
         />
-        <router-link to="/">
+        <router-link to="/" v-shortkey="['esc']" @shortkey.native="cancel">
           <button class="btn btn-negative" style="width: 50%">Cancel</button>
         </router-link>
       </div>

@@ -29,5 +29,5 @@ function onSubmit(e){
 }
 
 function cancel() {
-  this.$router.push('/');
+  this.$router.go(-1);
 }
