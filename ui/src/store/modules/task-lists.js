@@ -7,7 +7,16 @@ const store = {
   getters: {
     allTaskLists: (state) => state.taskLists,
     getTaskList: (state) => (id) => state.taskLists.find(t => t.id === id),
-    getTasks: (state) => (id) => state.taskLists.find(t => t.id === id).tasks
+    getTasks: (state) => (id) => state.taskLists.find(t => t.id === id).tasks,
+    getTask: state => id => {
+      for (const taskList of state.taskLists) {
+        for (const task of taskList.tasks) {
+          if (task.id === id) {
+            return task;
+          }
+        }
+      }
+    }
   },
   actions: {
     fetchTaskLists,
@@ -15,14 +24,18 @@ const store = {
     deleteTaskList,
     updateTaskList,
     setTaskLists,
-    addTask
+    addTask,
+    deleteTask,
+    updateTask
   },
   mutations: {
     setTaskLists: (state, taskLists) => state.taskLists = taskLists,
     newTaskList,
     removeTaskList,
     editedTaskList,
-    newTask
+    newTask,
+    removeTask,
+    editTask
   }
 };
 
@@ -51,7 +64,7 @@ function deleteTaskList({ commit }, id) {
   commit('removeTaskList', id);
 }
 
-function setTaskLists(context, newTaskLists){
+function setTaskLists(context, newTaskLists) {
   // save new task list in the backend
   context.commit('setTaskLists', newTaskLists);
 }
@@ -59,8 +72,19 @@ function setTaskLists(context, newTaskLists){
 function addTask(context, task) {
   context.commit('newTask', task);
 }
-// mutations
 
+function deleteTask({ commit }, payload) {
+  // delete from repository here.
+  commit('removeTask', payload);
+}
+
+function updateTask(context, payload) {
+  const task = context.getters.getTask(payload.id);
+
+  context.commit('editTask', { task, updatedTask: payload });
+}
+
+// mutations
 function newTaskList(state, taskList) {
   state.taskLists.push(taskList);
 }
@@ -77,6 +101,18 @@ function editedTaskList(state, editedTaskList) {
   tl.title = editedTaskList.title;
 }
 
-function newTask(state, task){
-  state.taskLists.find(t => t.id === task.id).tasks.push(task);
+function newTask(state, payload) {
+  payload.task.id = ++id;
+  state.taskLists.find(t => t.id === payload.taskListId).tasks.push(payload.task);
+}
+
+function removeTask(state, payload) {
+  const tasks = state.taskLists.find(t => t.id === payload.taskListId).tasks;
+  const index = tasks.findIndex(t => t.id === payload.id);
+  tasks.splice(index, 1);
+}
+
+function editTask(state, payload) {
+  payload.task.title = payload.updatedTask.title;
+  payload.task.reminder = payload.updatedTask.reminder;
 }

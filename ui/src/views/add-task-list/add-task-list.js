@@ -1,4 +1,5 @@
 import { mapActions } from 'vuex';
+import FocusDirective from '@/directives/focus';
 
 export default {
   name: "add-task-list",
@@ -8,11 +9,7 @@ export default {
     };
   },
   directives: {
-    focus: {
-      inserted: function(el){
-        el.focus();
-      }
-    }
+    focus: FocusDirective
   },
   methods: {
     ...mapActions(['addTaskList']),
@@ -21,11 +18,11 @@ export default {
   },
 };
 
-function onSubmit(e){
+function onSubmit(e) {
   e.preventDefault();
   this.addTaskList(this.title);
   this.$router.push('/');
-  
+
 }
 
 function cancel() {

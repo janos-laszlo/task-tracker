@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h3>Add Task</h3>
+    <h3>Edit Task</h3>
     <form @submit.prevent="onSubmit">
       <input type="text" placeholder="Task..." v-model="title" v-focus />
       <h4 style="margin-bottom: 5px;">
@@ -11,7 +11,7 @@
       <div style="margin-top: 5px">
         <input
           type="submit"
-          value="Add"
+          value="Apply"
           class="btn btn-positive"
           style="margin-right: 5px; width: calc(50% - 5px)"
         />
@@ -29,5 +29,5 @@
   </div>
 </template>
 
-<script src="./add-task.js"></script>
-<style scoped src="./add-task.css"></style>
+<script src="./edit-task.js"></script>
+<style scoped src="./edit-task.css"></style>
