@@ -21,14 +21,13 @@ export default {
   data() {
     return {
       showModal: false,
-      sortingDisabled: true
+      sortingEnabled: false
     }
   },
   methods: {
     ...mapActions(['fetchTaskLists', 'deleteTaskList', 'setTaskLists']),
     openDeleteTaskList,
     onDeleteTaskList,
-    onSortingChanged,
     goToAddTaskList,
     toggleOrdering,
     goToEditTaskList
@@ -59,16 +58,12 @@ function onDeleteTaskList() {
   this.deleteTaskList(this.taskToDeleteId);
 }
 
-function onSortingChanged(checked) {
-  this.sortingDisabled = !checked;
-}
-
 function goToAddTaskList() {
   this.$router.push('add-task-list');
 }
 
 function toggleOrdering() {
-  this.sortingDisabled = !this.sortingDisabled;
+  this.sortingEnabled = !this.sortingEnabled;
 }
 
 function goToEditTaskList(id) {

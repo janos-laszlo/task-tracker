@@ -1,4 +1,5 @@
-let id = 3;
+import { TaskList } from "../../types/task-list";
+import { Task } from "../../types/task";
 
 const store = {
   state: {
@@ -26,7 +27,8 @@ const store = {
     setTaskLists,
     addTask,
     deleteTask,
-    updateTask
+    updateTask,
+    setTaskStatus
   },
   mutations: {
     setTaskLists: (state, taskLists) => state.taskLists = taskLists,
@@ -35,7 +37,8 @@ const store = {
     editedTaskList,
     newTask,
     removeTask,
-    editTask
+    editTask,
+    updateTaskStatus
   }
 };
 
@@ -52,7 +55,7 @@ async function fetchTaskLists({ commit }) {
 }
 
 function addTaskList({ commit }, title) {
-  const newTaskList = { id: id++, title, tasks: [] };
+  const newTaskList = new TaskList(title);
   commit('newTaskList', newTaskList);
 }
 
@@ -84,6 +87,10 @@ function updateTask(context, payload) {
   context.commit('editTask', { task, updatedTask: payload });
 }
 
+function setTaskStatus(context, payload) {
+  context.commit('updateTaskStatus', payload);
+}
+
 // mutations
 function newTaskList(state, taskList) {
   state.taskLists.push(taskList);
@@ -102,8 +109,8 @@ function editedTaskList(state, editedTaskList) {
 }
 
 function newTask(state, payload) {
-  payload.task.id = ++id;
-  state.taskLists.find(t => t.id === payload.taskListId).tasks.push(payload.task);
+  const task = new Task(payload.task.title, payload.task.reminder);
+  state.taskLists.find(t => t.id === payload.taskListId).tasks.push(task);
 }
 
 function removeTask(state, payload) {
@@ -115,4 +122,8 @@ function removeTask(state, payload) {
 function editTask(state, payload) {
   payload.task.title = payload.updatedTask.title;
   payload.task.reminder = payload.updatedTask.reminder;
+}
+
+function updateTaskStatus(state, payload) {
+  payload.task.completed = payload.completed;
 }

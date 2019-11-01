@@ -9,5 +9,5 @@ Vue.use(require('vue-shortkey'));
 new Vue({
   store,
   router: Router,
-  render: h => h(App)  
+  render: h => h(App)
 }).$mount('#app');

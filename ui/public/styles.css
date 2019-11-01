@@ -44,13 +44,15 @@ input[type="text"]:focus {
 }
 
 .icon {
-  margin-left: 10px;
+  display: inline-block;
+  margin: 10px 0 10px 10px;
 }
 
 .icon:hover {
   color: #f4e0e2;
   cursor: pointer;
 }
+
 a {
   color: #27578f;
 }

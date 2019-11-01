@@ -1,10 +1,15 @@
 <template>
   <div>
     <label class="check">
-      <input type="checkbox" v-on:change="$emit('change', $event.target.checked)" id="sort" v-model="isChecked"/>
+      <input
+        type="checkbox"
+        id="sort"
+        :checked="value"
+        @change="$emit('input', $event.target.checked)"
+      />
       <div class="box"></div>
     </label>
-    <label for="sort" style="position: relative; bottom: 5px; margin-left: 5px;">
+    <label v-if="$slots.default" for="sort" style="position: relative; bottom: 5px; margin-left: 5px;">
       <slot></slot>
     </label>
   </div>

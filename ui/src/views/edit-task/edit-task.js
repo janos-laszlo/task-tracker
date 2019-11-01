@@ -37,7 +37,7 @@ export default {
 }
 
 function onSubmit() {
-  this.updateTask({ id: parseInt(this.$route.params.id), title: this.title, reminder: this.reminder });
+  this.updateTask({ id: this.$route.params.id, title: this.title, reminder: this.reminder });
   this.$router.go(-1);
 }
 

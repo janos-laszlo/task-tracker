@@ -2,16 +2,15 @@
   <div>
     <h3 class="page-title">Task lists</h3>
     <div id="task-list-container">
-      <div v-if="taskLists.length">
+      <div v-if="taskLists.length > 1">
         <tt-checkbox
-          :checked="!sortingDisabled"
-          @change="onSortingChanged"
+          v-model="sortingEnabled"
           v-shortkey="['ctrl', 'o']"
           @shortkey.native="toggleOrdering"
         >Toggle ordering</tt-checkbox>
       </div>
-      <p v-else>Empty here...</p>
-      <draggable v-model="taskLists" :disabled="sortingDisabled">
+      <p v-if="!taskLists.length">Empty here...</p>
+      <draggable v-model="taskLists" :disabled="!sortingEnabled">
         <div class="task-list" v-for="(taskList, index) in taskLists" v-bind:key="taskList.id">
           <router-link :to="`/task-list/${taskList.id}`">
             <div class="task-list-name">

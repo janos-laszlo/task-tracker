@@ -1,6 +1,6 @@
 <template>
   <div class="topnav" id="myTopnav">
-    <router-link to="/">
+    <router-link to="/" style="height: 22px;">
         <img src="@/assets/logo.png" class="logo"/>
     </router-link>
     <a href="#sign-up" class="float-right active">Sign up</a>

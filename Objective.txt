@@ -8,3 +8,4 @@
 -users can order their task lists by dragging them
 -the user must see all his incomplete tasks in a task list and the last 10 completed tasks
 -the user can load older tasks in a task list
+-add a page with keyboard shortcuts
