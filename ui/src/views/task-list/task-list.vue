@@ -4,7 +4,7 @@
     <p v-if="!taskList.tasks.length">Empty here...</p>
 
     <div style="margin-bottom: 60px;">
-      <task v-for="(task, index) in taskList.tasks" :key="task.id" :task="task" :index="index"/>
+      <task v-for="(task, index) in tasks" :key="task.id" :task="task" :index="index"/>
     </div>
 
     <router-link
