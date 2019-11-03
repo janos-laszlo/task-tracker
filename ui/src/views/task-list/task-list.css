@@ -1,0 +1,7 @@
+div {
+  color: #27578f;
+}
+
+.flip-list-move {
+  transition: transform 0.3s;
+}

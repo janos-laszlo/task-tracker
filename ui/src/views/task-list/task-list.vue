@@ -4,7 +4,9 @@
     <p v-if="!taskList.tasks.length">Empty here...</p>
 
     <div style="margin-bottom: 60px;">
-      <task v-for="(task, index) in tasks" :key="task.id" :task="task" :index="index"/>
+      <transition-group name="flip-list" tag="div">
+        <task v-for="(task, index) in tasks" :key="task.id" :task="task" :index="index" />
+      </transition-group>
     </div>
 
     <router-link
@@ -13,7 +15,7 @@
       @shortkey.native="goToAddTask"
     >
       <add-item></add-item>
-    </router-link>    
+    </router-link>
   </div>
 </template>
 
