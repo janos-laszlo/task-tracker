@@ -7,7 +7,6 @@
         <span style="margin-right: 5px">Remind me</span>
         <font-awesome-icon icon="clock" />
       </h4>
-      <!-- <datetime format="YYYY/MM/DD H:i" v-model="reminder"></datetime> -->
       <div style="margin-top: 5px">
         <input
           type="submit"

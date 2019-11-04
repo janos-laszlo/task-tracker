@@ -9,10 +9,11 @@
             <span style="margin-right: 5px">Remind me</span>
             <font-awesome-icon icon="clock" />
           </h4>
-        </legend>        
+        </legend>
         <div id="datetime-container">
-          <cron-expression />
+          <cron-expression v-model="cronExpression" future />
         </div>
+        <p>{{cronExpression}}</p>
       </fieldset>
 
       <div style="margin-top: 5px">

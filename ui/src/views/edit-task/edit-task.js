@@ -30,12 +30,12 @@ export default {
   created() {
     const task = this.getTask(this.$route.params.id);
     this.title = task.title;
-    this.reminder = task.reminder;
+    this.cronExpression = task.cronExpression;
   }
 }
 
 function onSubmit() {
-  this.updateTask({ id: this.$route.params.id, title: this.title, reminder: this.reminder });
+  this.updateTask({ id: this.$route.params.id, title: this.title, cronExpression: this.cronExpression });
   this.$router.go(-1);
 }
 

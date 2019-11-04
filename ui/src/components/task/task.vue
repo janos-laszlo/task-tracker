@@ -25,11 +25,11 @@
         </span>
       </div>
     </div>
-    <div v-if="task.reminder" class="reminder">
+    <div v-if="task.cronExpression" class="cronExpression">
       <span style="margin-right: 5px;">
         <font-awesome-icon icon="clock" />
       </span>
-      <span style="font-size: 14px">{{task.reminder}}</span>
+      <span style="font-size: 14px">{{task.cronExpression}}</span>
     </div>
     <confirmation-dialog v-if="showModal" @close="showModal = false" @yes="onDeleteTaskList"></confirmation-dialog>
   </div>

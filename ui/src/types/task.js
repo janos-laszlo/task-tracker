@@ -1,10 +1,10 @@
 import { uuid } from 'vue-uuid';
 
 export class Task {
-  constructor(title, reminder){
+  constructor(title, cronExpression){
     this.id = uuid.v4();
     this.title = title;
-    this.reminder = reminder;
+    this.cronExpression = cronExpression;
     this.completed = false;
     this.createdAt = new Date();
   }
