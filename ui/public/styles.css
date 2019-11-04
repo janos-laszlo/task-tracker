@@ -36,7 +36,7 @@ input[type="text"]:focus {
 }
 
 .btn-positive {
-  background: #1b9c8b;
+  background: #43afe3;
 }
 
 .btn-negative {
@@ -59,4 +59,24 @@ a {
 
 .page-title {
   text-align: center;
+}
+
+fieldset {
+  border: 1px solid #27578f;
+  border-radius: 4px;
+}
+
+fieldset legend {
+  padding: 0 10px;
+}
+
+select {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #27578f;
+  border-radius: 4px;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  outline: none;
+  color: #27578f;
 }

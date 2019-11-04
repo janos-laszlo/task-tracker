@@ -1,17 +1,17 @@
-import datetime from 'vuejs-datetimepicker';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faClock } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { mapActions } from 'vuex';
 import FocusDirective from '@/directives/focus';
+import CronExpression from '@/components/cron-expression/cron-expression.vue';
 
 library.add(faClock);
 
 export default {
   name: 'add-task',
   components: {
-    datetime,
-    FontAwesomeIcon
+    FontAwesomeIcon,
+    CronExpression
   },
   directives: {
     focus: FocusDirective

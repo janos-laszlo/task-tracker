@@ -1,8 +1,15 @@
 .container {
+  max-width: 480px;
   width: 100%;
   color: #27578f;
+  margin: auto;
 }
 
 h3 {
   text-align: center;
+}
+
+#datetime-container {
+  display: flex;
+  justify-content: center;
 }

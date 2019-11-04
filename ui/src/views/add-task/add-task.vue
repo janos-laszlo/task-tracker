@@ -3,11 +3,18 @@
     <h3>Add Task</h3>
     <form @submit.prevent="onSubmit">
       <input type="text" placeholder="Task..." v-model="title" v-focus />
-      <h4 style="margin-bottom: 5px;">
-        <span style="margin-right: 5px">Remind me</span>
-        <font-awesome-icon icon="clock" />
-      </h4>
-      <datetime format="YYYY/MM/DD H:i" v-model="reminder"></datetime>
+      <fieldset>
+        <legend>
+          <h4>
+            <span style="margin-right: 5px">Remind me</span>
+            <font-awesome-icon icon="clock" />
+          </h4>
+        </legend>        
+        <div id="datetime-container">
+          <cron-expression />
+        </div>
+      </fieldset>
+
       <div style="margin-top: 5px">
         <input
           type="submit"
