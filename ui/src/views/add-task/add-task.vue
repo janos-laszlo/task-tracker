@@ -13,7 +13,10 @@
         <div id="datetime-container">
           <cron-expression v-model="cronExpression" future />
         </div>
-        <p>{{cronExpression}}</p>
+        <p>
+          cron:
+          <span v-if="cronExpression">{{cronExpression.toLocaleString()}}</span>
+        </p>
       </fieldset>
 
       <div style="margin-top: 5px">

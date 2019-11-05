@@ -1,0 +1,7 @@
+.time-picker-container{
+  margin-top: 10px;
+}
+
+.time-picker-container .el-date-editor.el-input, .el-date-editor.el-input__inner {
+  width: 100%;
+}

@@ -2,10 +2,7 @@
   width: 100%;
 }
 
-.time-picker-container{
-  margin-top: 10px;
-}
-
-.time-picker-container .el-date-editor.el-input, .el-date-editor.el-input__inner {
-  width: 100%;
+.subitem-title {
+  font-weight: bold;
+  margin: 10px 0;
 }

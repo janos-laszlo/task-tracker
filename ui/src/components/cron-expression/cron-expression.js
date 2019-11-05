@@ -1,23 +1,29 @@
-import VCalendar from "v-calendar";
-import { TimePicker } from "element-ui";
-
-let minuteUpdateIntervalId;
+import DateTimePicker from '@/components/date-time-picker/date-time-picker.vue';
+import getCronExpression from '@/algorithms/cron-expression.js';
+import * as Constants from '@/constants/constants';
 
 export default {
   name: "cron-expression",
   components: {
-    VCalendar,
-    "el-time-picker": TimePicker
+    DateTimePicker
   },
   props: {
-    cronExpression: Date,
-    future: Boolean
+    value: [String, Date]
   },
   data() {
     return {
-      frequency: "Once",
-      dateTime: null,
-      minDate: null
+      frequency: "Hourly",
+      date: this.value,
+      minute: [],
+      daily: {
+        hour: null,
+        minute: null
+      },
+      weekly: {
+        days: [],
+        hour: null,
+        minute: null
+      }
     };
   },
   computed: {
@@ -29,26 +35,67 @@ export default {
         this.frequency = value;
       }
     },
-    selectableRange: function() {
-      return ["00:00", "23:59"];
+    dateProp: {
+      get() { return this.date; },
+      set(value) {
+        this.date = value;
+        this.emitDate();
+      }
+    },
+    minuteProp: {
+      get() { return this.minute },
+      set(value) {
+        this.minute = value;
+        this.emitHourly();
+      }
     }
   },
-  created() {
-    this.dateTime = new Date();
-    this.dateTime.setSeconds(0);
-    if (this.future) {
-      this.minDate = new Date();
-      this.minDate.setHours(0);
-      this.minDate.setMinutes(0);
-      this.minDate.setSeconds(0);
-      minuteUpdateIntervalId = setInterval(() => {
-        this.minDate.setMinutes(this.minDate.getMinutes() + 1);
-      }, 60000);
-    }
-  },
-  destroyed() {
-    if (minuteUpdateIntervalId) {
-      clearInterval(minuteUpdateIntervalId);
-    }
+  methods: {
+    emitDate,
+    emitHourly,
+    onDailyChanged,
+    onWeeklyChanged,
+    onSelectedFrequencyChanged
   }
 };
+
+function emitDate() {
+  this.$emit('input', this.dateProp);
+}
+
+function emitHourly() {
+  this.$emit('input', getCronExpression(this.selectedFrequency, this.minute));
+}
+
+function onDailyChanged() {
+  if (this.daily.hour && this.daily.minute)
+    this.$emit('input', getCronExpression(this.selectedFrequency, this.daily));
+}
+
+function onWeeklyChanged() {
+  if(this.weekly.days.length && this.weekly.hour && this.weekly.minute){
+    this.$emit('input', getCronExpression(this.selectedFrequency, this.weekly));
+  }
+}
+
+function onSelectedFrequencyChanged() {
+  switch (this.selectedFrequency) {
+    case Constants.ONCE:
+      this.emitDate();
+      break;
+    case Constants.HOURLY:
+      this.emitHourly();
+      break;
+    case Constants.DAILY:
+      this.onDailyChanged();
+      break;
+    case Constants.WEEKLY:
+      break;
+    case Constants.MONTHLY:
+      break;
+    case Constants.YEARLY:
+      break;
+    default:
+      break;
+  }
+}

@@ -79,4 +79,5 @@ select {
   box-sizing: border-box;
   outline: none;
   color: #27578f;
+  background: transparent;
 }
