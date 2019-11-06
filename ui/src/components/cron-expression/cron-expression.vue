@@ -1,30 +1,26 @@
 <template>
   <div class="container">
-    <select v-model="selectedFrequency" @change="onSelectedFrequencyChanged()" style="margin-bottom: 10px">
-      <option>Once</option>
-      <option>Hourly</option>
-      <option>Daily</option>
-      <option>Weekly</option>
-      <option>Monthly</option>
-      <option>Yearly</option>
-      <option>CRON</option>
+    <select
+      v-model="selectedFrequency"
+      @change="onSelectedFrequencyChanged()"
+      style="margin-bottom: 10px"
+    >
+      <option v-for="(frequency, index) in constants.FREQUENCIES" :key="index">{{frequency}}</option>
     </select>
 
     <transition enter-active-class="animated fadeIn">
-      <div v-if="selectedFrequency === 'Once'">
+      <div v-if="selectedFrequency === constants.ONCE">
         <date-time-picker v-model="dateProp" future></date-time-picker>
       </div>
     </transition>
-
     <transition enter-active-class="animated fadeIn">
-      <div v-if="selectedFrequency === 'Hourly'">
+      <div v-if="selectedFrequency === constants.HOURLY">
         <p class="subitem-title">Select one or more minutes:</p>
-        <select v-model="minuteProp" multiple style="height: 195px">
-          <option v-for="(n, index) in 60" :key="n">{{index}}</option>
-        </select>
+        <minute-picker v-model="minutesProp"></minute-picker>
       </div>
     </transition>
 
+    <!-- 
     <transition enter-active-class="animated fadeIn">
       <div v-if="selectedFrequency === 'Daily'">
         <p class="subitem-title">Select hour:</p>
@@ -53,16 +49,10 @@
     </transition>
     <transition enter-active-class="animated fadeIn">
       <div v-if="selectedFrequency === 'CRON'">CRON</div>
-    </transition>
+    </transition>-->
     <p>frequency: {{selectedFrequency}}</p>
-    <p>
-      date:
-      <span v-if="dateProp">{{date.toLocaleString()}}</span>
-    </p>
-    <p>minute: {{minuteProp}}</p>
   </div>
 </template>
 
 <script src="./cron-expression.js"></script>
 <style scoped src="./cron-expression.css"></style>
-<style src="element-ui/lib/theme-chalk/index.css"></style>

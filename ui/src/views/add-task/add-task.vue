@@ -11,12 +11,10 @@
           </h4>
         </legend>
         <div id="datetime-container">
-          <cron-expression v-model="cronExpression" future />
+          <cron-expression v-model="cronExpression" />
         </div>
-        <p>
-          cron:
-          <span v-if="cronExpression">{{cronExpression.toLocaleString()}}</span>
-        </p>
+        <p>cron:{{cronExpression}}</p>
+        <p>human readable cron: {{humanReadableCron}}</p>
       </fieldset>
 
       <div style="margin-top: 5px">

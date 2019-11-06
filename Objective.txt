@@ -9,3 +9,23 @@
 -the user must see all his incomplete tasks in a task list and the last 10 completed tasks
 -the user can load older tasks in a task list
 -add a page with keyboard shortcuts
+
+add-task view
+-contains an input to enter the task name
+-a checkbox 'Remind me'
+-a cron-expression component
+	-visible if the 'Remind me' checkbox is checked
+	
+cron-expression component
+-it's a component that accepts as input:
+	-a string that can be null or a valid CRON expression
+-a dropdown to select the reminder frequency (once, hourly, daily, weekly, monthly, yearly, CRON)
+-a date-time-picker component
+	-component visible if the reminder frequency is 'once'
+	-modeling the remindAt field
+-a cron-expression component
+	-visible if the reminder frequency is in [hourly, daily, weekly, monthly, yearly, CRON]
+	-modeling the cronExpression field
+
+minute-picker component
+-input: an array which contains minutes

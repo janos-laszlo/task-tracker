@@ -21,3 +21,4 @@
 
 <script src="./date-time-picker.js"></script>
 <style scoped src="./date-time-picker.css"></style>
+<style src="element-ui/lib/theme-chalk/index.css"></style>

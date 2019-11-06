@@ -1,18 +1,20 @@
 import DateTimePicker from '@/components/date-time-picker/date-time-picker.vue';
+import MinutePicker from '@/components/minute-picker/minute-picker.vue'
 import getCronExpression from '@/algorithms/cron-expression.js';
 import * as Constants from '@/constants/constants';
 
 export default {
   name: "cron-expression",
   components: {
-    DateTimePicker
+    DateTimePicker,
+    MinutePicker
   },
   props: {
-    value: [String, Date]
+    value: [String]
   },
   data() {
     return {
-      frequency: "Hourly",
+      frequency: Constants.ONCE,
       date: this.value,
       minute: [],
       daily: {
@@ -23,10 +25,18 @@ export default {
         days: [],
         hour: null,
         minute: null
+      },
+      cronExpression: {
+        minutes: [],
+        hours: [],
+        daysOfTheWeek: [],
+        daysOfTheMonth: [],
+        months: []
       }
     };
   },
   computed: {
+    constants: function () { return Constants; },
     selectedFrequency: {
       get() {
         return this.frequency;
@@ -42,10 +52,10 @@ export default {
         this.emitDate();
       }
     },
-    minuteProp: {
-      get() { return this.minute },
+    minutesProp: {
+      get() { return this.cronExpression.minutes },
       set(value) {
-        this.minute = value;
+        this.cronExpression.minutes = value;
         this.emitHourly();
       }
     }
@@ -60,11 +70,11 @@ export default {
 };
 
 function emitDate() {
-  this.$emit('input', this.dateProp);
+  this.$emit('input', getCronExpression(this.selectedFrequency, this.dateProp));
 }
 
 function emitHourly() {
-  this.$emit('input', getCronExpression(this.selectedFrequency, this.minute));
+  this.$emit('input', getCronExpression(this.selectedFrequency, this.cronExpression.minutes));
 }
 
 function onDailyChanged() {
@@ -73,7 +83,7 @@ function onDailyChanged() {
 }
 
 function onWeeklyChanged() {
-  if(this.weekly.days.length && this.weekly.hour && this.weekly.minute){
+  if (this.weekly.days.length && this.weekly.hour && this.weekly.minute) {
     this.$emit('input', getCronExpression(this.selectedFrequency, this.weekly));
   }
 }

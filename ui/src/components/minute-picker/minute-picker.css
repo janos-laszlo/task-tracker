@@ -1,0 +1,18 @@
+#minutes-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#minutes-container > div {
+  width: 15px;
+  padding: 5px 10px;
+  background: #43afe3;
+  margin-top: 4px;
+  border-radius: 4px;
+  color: #f4e0e2;
+}
+
+#minutes-container > .minute-selected {
+  background: #27578f;
+}
