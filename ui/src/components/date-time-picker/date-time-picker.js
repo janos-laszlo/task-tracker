@@ -1,14 +1,9 @@
-import VCalendar from "v-calendar";
-import { TimePicker } from "element-ui";
-
 let minuteUpdateIntervalId;
 let timeoutId;
 
 export default {
   name: 'date-time-picker',
   components: {
-    VCalendar,
-    "el-time-picker": TimePicker
   },
   props: {
     value: [Date],

@@ -26,8 +26,8 @@ export default {
     }
   },
   computed: {
-    frequencies: function () { return Constants.FREQUENCIES; },
-    humanReadableCron: function () { return this.cronExpression ?  cronstrue.toString(this.cronExpression, { use24HourTimeFormat: true }) : ''; }
+    frequencies: function () { return Constants.FREQUENCIES; },    
+    humanReadableCron: function () { return this.cronExpression ? cronstrue.toString(this.cronExpression, { use24HourTimeFormat: true }) : ''; }
   },
   methods: {
     ...mapActions(['addTask']),

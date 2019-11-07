@@ -8,39 +8,33 @@
       <option v-for="(frequency, index) in constants.FREQUENCIES" :key="index">{{frequency}}</option>
     </select>
 
-    <transition enter-active-class="animated fadeIn">
+    <!-- <transition enter-active-class="animated fadeIn">
       <div v-if="selectedFrequency === constants.ONCE">
         <date-time-picker v-model="dateProp" future></date-time-picker>
       </div>
-    </transition>
+    </transition> -->
     <transition enter-active-class="animated fadeIn">
-      <div v-if="selectedFrequency === constants.HOURLY">
-        <p class="subitem-title">Select one or more minutes:</p>
-        <minute-picker v-model="minutesProp"></minute-picker>
+      <div v-if="selectedFrequency === constants.HOURLY">        
+        <minute-picker v-model="minuteProp"></minute-picker>
       </div>
     </transition>
 
+    <transition enter-active-class="animated fadeIn">
+      <div v-if="selectedFrequency === constants.DAILY">
+        <hour-picker v-model="hourProp" ></hour-picker>
+        <minute-picker v-model="minuteProp"></minute-picker>
+      </div>
+    </transition>
+
+    <transition enter-active-class="animated fadeIn">
+      <div v-if="selectedFrequency === constants.WEEKLY">
+        <day-of-week-picker v-model="dayOfWeekProp"/>
+        <hour-picker v-model="hourProp" ></hour-picker>
+        <minute-picker v-model="minuteProp"></minute-picker>
+      </div>
+    </transition>
+    
     <!-- 
-    <transition enter-active-class="animated fadeIn">
-      <div v-if="selectedFrequency === 'Daily'">
-        <p class="subitem-title">Select hour:</p>
-        <select v-model="daily.hour" @change="onDailyChanged()">
-          <option v-for="(n, index) in 24" :key="n">{{index}}</option>
-        </select>
-        <p class="subitem-title">Select minute:</p>
-        <select v-model="daily.minute" @change="onDailyChanged()">
-          <option v-for="(n, index) in 60" :key="n">{{index}}</option>
-        </select>
-      </div>
-    </transition>
-    <transition enter-active-class="animated fadeIn">
-      <div v-if="selectedFrequency === 'Weekly'">
-        <p>Select one or more days:</p>
-        <select v-model="weekly.days" multiple @change="onWeeklyChanged()" style="height: 131px">
-          <option v-for="(day, index) in ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']" :key="index" :value="index + 1">{{day}}</option>
-        </select>
-      </div>
-    </transition>
     <transition enter-active-class="animated fadeIn">
       <div v-if="selectedFrequency === 'Monthly'">Monthly</div>
     </transition>

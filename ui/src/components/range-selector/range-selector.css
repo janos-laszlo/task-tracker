@@ -1,0 +1,43 @@
+#container {
+  display: flex;
+  align-content: stretch;
+  align-items: top;
+}
+
+#range-wrapper {
+  flex: 1;
+  display: flex;
+  overflow-x: auto;
+  border: 1px solid #27578f;
+  border-radius: 4px;
+}
+
+#range-container {
+  min-height: min-content; /* needs vendor prefixes */
+  display: flex;
+}
+
+#range-container > div {
+  padding: 5px 10px;
+  background: #43afe3;
+  margin: 2px;
+  border-radius: 4px;
+  color: #f4e0e2;
+  cursor: pointer;
+}
+
+#range-container > .minute-selected {
+  background: #27578f;
+}
+
+#current-value {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  border: 1px solid #27578f;
+  border-radius: 4px;
+  text-align: center;
+  padding: 5px 10px;
+  margin-right: 4px;
+}

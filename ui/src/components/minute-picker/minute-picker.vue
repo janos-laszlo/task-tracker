@@ -1,8 +1,7 @@
 <template>
   <div>
-    <div id="minutes-container">
-      <div v-for="(n, index) in 60" :key="n" :class="{'minute-selected': minutesProp.includes(index)}" @click="toggleMinuteSelection(index)">{{index}}</div>
-    </div>
+    <p class="title">Select minute:</p>
+    <range-selector v-model="minute" :max=59 :step=5 />
   </div>
 </template>
 
