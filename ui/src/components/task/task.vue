@@ -33,7 +33,7 @@
         <span style="font-size: 14px">{{task.remindAt | formatDateTime}}</span>
       </div>
 
-      <div v-if="task.reminderFrequency !== once" class="mt-1" style="display: inline-block">
+      <div v-if="task.reminderFrequency !== once" style="display: inline-block; padding: 5px 0">
         <span style="margin-right: 10px">
           <font-awesome-icon icon="redo" />
         </span>
