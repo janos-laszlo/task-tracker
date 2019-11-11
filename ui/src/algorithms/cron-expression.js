@@ -37,11 +37,23 @@ function getCronExpression(frequency, value) {
       cronExp.set('dayOfTheWeek', [value.dayOfWeek.toString()]);
       return cronExp.build();
     case Constants.MONTHLY:
-      return '';
+      if (typeof (value.minute) !== 'number' ||
+        typeof (value.hour) !== 'number' ||
+        typeof (value.dayOfTheMonth) !== 'number') return '';
+      cronExp.set('minute', [value.minute.toString()]);
+      cronExp.set('hour', [value.hour.toString()]);
+      cronExp.set('dayOfTheMonth', [value.dayOfTheMonth.toString()]);
+      return cronExp.build();
     case Constants.YEARLY:
-      return '';
-    case Constants.CRON:
-      return '';
+      if (typeof (value.minute) !== 'number' ||
+        typeof (value.hour) !== 'number' ||
+        typeof (value.dayOfTheMonth) !== 'number' ||
+        typeof (value.month) !== 'number') return '';
+      cronExp.set('minute', [value.minute.toString()]);
+      cronExp.set('hour', [value.hour.toString()]);
+      cronExp.set('dayOfTheMonth', [value.dayOfTheMonth.toString()]);
+      cronExp.set('month', [value.month.toString()]);
+      return cronExp.build();
     default:
       throw new Error(`Unhandled frequency: ${frequency}`);
   }

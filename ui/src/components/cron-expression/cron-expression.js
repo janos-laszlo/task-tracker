@@ -2,6 +2,8 @@ import DateTimePicker from '@/components/date-time-picker/date-time-picker.vue';
 import MinutePicker from '@/components/minute-picker/minute-picker.vue'
 import HourPicker from '@/components/hour-picker/hour-picker.vue';
 import DayOfWeekPicker from '@/components/day-of-week-picker/day-of-week-picker.vue';
+import DatePicker from '@/components/date-picker/date-picker.vue';
+import MonthPicker from '@/components/month-picker/month-picker.vue';
 import getCronExpression from '@/algorithms/cron-expression.js';
 import * as Constants from '@/constants/constants';
 
@@ -11,32 +13,25 @@ export default {
     DateTimePicker,
     MinutePicker,
     HourPicker,
-    DayOfWeekPicker
+    DayOfWeekPicker,
+    DatePicker,
+    MonthPicker
   },
   props: {
     value: [String]
   },
   data() {
     return {
-      frequency: Constants.HOURLY,
-      date: this.value,
-      minute: [],
-      daily: {
-        hour: null,
-        minute: null
-      },
-      weekly: {
-        days: [],
-        hour: null,
-        minute: null
-      },
+      frequency: Constants.ONCE,
+      dateTime: null,
       cronExpression: {
         minute: null,
         hour: null,
         dayOfWeek: null,
         dayOfTheMonth: null,
         month: null
-      }
+      },
+      cron: null      
     };
   },
   computed: {
@@ -49,10 +44,10 @@ export default {
         this.frequency = value;
       }
     },
-    dateProp: {
-      get() { return this.date; },
-      set(value) {
-        this.date = value;
+    dateTimeProp: {
+      get() { return this.dateTime;},
+      set(value){
+        this.dateTime = value;
         this.emitCron();
       }
     },
@@ -76,6 +71,27 @@ export default {
         this.cronExpression.dayOfWeek = value;
         this.emitCron();
       }
+    },
+    dayOfTheMonthProp: {
+      get() { return this.cronExpression.dayOfTheMonth; },
+      set(value) {
+        this.cronExpression.dayOfTheMonth = value;
+        this.emitCron();
+      }
+    },
+    monthProp: {
+      get() { return this.cronExpression.month; },
+      set(value) {
+        this.cronExpression.month = value;
+        this.emitCron();
+      }
+    },
+    cronProp: {
+      get() { return this.cron; },
+      set(value) {
+        this.cron = value;
+        this.emitCron();
+      }
     }
   },
   methods: {
@@ -84,9 +100,9 @@ export default {
     emitHourly,
     emitDaily,
     emitWeekly,
-    onDailyChanged,
-    onWeeklyChanged,
-    onSelectedFrequencyChanged
+    emitMonthly,
+    emitYearly,
+    emitCustomCron
   }
 };
 
@@ -104,6 +120,15 @@ function emitCron() {
     case Constants.WEEKLY:
       this.emitWeekly();
       break;
+    case Constants.MONTHLY:
+      this.emitMonthly();
+      break;
+    case Constants.YEARLY:
+      this.emitYearly();
+      break;
+    case Constants.CRON:
+      this.emitCustomCron();
+      break;
     default:
       console.error('not handled');
       break;
@@ -111,7 +136,7 @@ function emitCron() {
 }
 
 function emitDate() {
-  this.$emit('input', getCronExpression(this.selectedFrequency, this.dateProp));
+  this.$emit('input', getCronExpression(this.selectedFrequency, this.dateTimeProp));
 }
 
 function emitHourly() {
@@ -132,17 +157,27 @@ function emitWeekly() {
   this.$emit('input', getCronExpression(this.selectedFrequency, weekly));
 }
 
-function onDailyChanged() {
-  if (this.daily.hour && this.daily.minute)
-    this.$emit('input', getCronExpression(this.selectedFrequency, this.daily));
+function emitMonthly() {
+  const monthly = {
+    dayOfTheMonth: this.dayOfTheMonthProp,
+    hour: this.hourProp,
+    minute: this.minuteProp
+  };
+
+  this.$emit('input', getCronExpression(this.selectedFrequency, monthly));
 }
 
-function onWeeklyChanged() {
-  if (this.weekly.days.length && this.weekly.hour && this.weekly.minute) {
-    this.$emit('input', getCronExpression(this.selectedFrequency, this.weekly));
-  }
+function emitYearly() {
+  const yearly = {
+    month: this.monthProp,
+    dayOfTheMonth: this.dayOfTheMonthProp,
+    hour: this.hourProp,
+    minute: this.minuteProp
+  };
+
+  this.$emit('input', getCronExpression(this.selectedFrequency, yearly));
 }
 
-function onSelectedFrequencyChanged() {
-  this.emitCron();
+function emitCustomCron() {
+  this.$emit('input', this.cron);
 }

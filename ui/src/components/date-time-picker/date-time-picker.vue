@@ -1,20 +1,29 @@
 <template>
   <div>
-    <vc-date-picker
-      v-model="dateProp"
-      :min-date="minDate"
-      :first-day-of-week="2"
-      color="blue"
-      is-inline
-      is-expanded
-    />
-    <div class="time-picker-container">
-      <el-time-picker
-        v-model="timeProp"
-        :picker-options="{ selectableRange: selectableTimeRange }"
-        format="HH:mm"
-        placeholder="Select time"
-      ></el-time-picker>
+    <div class="date-time-part">
+      <p class="sub-item-title">year:</p>
+      <range-selector
+        v-model="dateTimeParts.year"
+        :min="currentYear"
+        :max="currentYear+10"
+        @input="onChange()"
+      />
+    </div>
+    <div class="date-time-part">
+      <p class="sub-item-title">month:</p>
+      <range-selector v-model="dateTimeParts.month" :min="1" :max="12" @input="onChange()" />
+    </div>
+    <div class="date-time-part">
+      <p class="sub-item-title">date:</p>
+      <range-selector v-model="dateTimeParts.date" :min="1" :max="31" @input="onChange()" />
+    </div>
+    <div class="date-time-part">
+      <p class="sub-item-title">hour:</p>
+      <range-selector v-model="dateTimeParts.hour" :max="23" @input="onChange()" />
+    </div>
+    <div class="date-time-part">
+      <p class="sub-item-title">minute:</p>
+      <range-selector v-model="dateTimeParts.minute" :max="59" :step=5 @input="onChange()" />
     </div>
   </div>
 </template>
