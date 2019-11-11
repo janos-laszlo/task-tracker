@@ -109,7 +109,7 @@ function editedTaskList(state, editedTaskList) {
 }
 
 function newTask(state, payload) {
-  const task = new Task(payload.task.title, payload.task.cronExpression);
+  const task = new Task(payload.task.title, payload.task.remindAt, payload.task.reminderFrequency);
   state.taskLists.find(t => t.id === payload.taskListId).tasks.push(task);
 }
 
@@ -121,7 +121,8 @@ function removeTask(state, payload) {
 
 function editTask(state, payload) {
   payload.task.title = payload.updatedTask.title;
-  payload.task.cronExpression = payload.updatedTask.cronExpression;
+  payload.task.remindAt = payload.updatedTask.remindAt;
+  payload.task.reminderFrequency = payload.updatedTask.reminderFrequency;
 }
 
 function updateTaskStatus(state, payload) {

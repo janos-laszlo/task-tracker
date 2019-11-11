@@ -3,20 +3,26 @@ import { faClock } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { mapActions, mapGetters } from 'vuex';
 import FocusDirective from '@/directives/focus';
+import Reminder from '@/components/reminder/reminder.vue';
 
 library.add(faClock);
 
 export default {
   name: 'edit-task',
   components: {
-    FontAwesomeIcon
+    FontAwesomeIcon,
+    Reminder
   },
   directives: {
     focus: FocusDirective
   },
   data() {
     return {
-      task: {}
+      title: "",
+      reminder: {
+        remindAt: null,
+        reminderFrequency: null
+      }
     }
   },
   computed: {
@@ -25,20 +31,26 @@ export default {
   methods: {
     ...mapActions(['updateTask']),
     onSubmit,
-    cancel
+    cancel,
+    isReminderSet
   },
   created() {
     const task = this.getTask(this.$route.params.id);
     this.title = task.title;
-    this.cronExpression = task.cronExpression;
+    this.reminder.remindAt = task.remindAt;
+    this.reminder.reminderFrequency = task.reminderFrequency;
   }
 }
 
 function onSubmit() {
-  this.updateTask({ id: this.$route.params.id, title: this.title, cronExpression: this.cronExpression });
+  this.updateTask({ id: this.$route.params.id, title: this.title, remindAt: this.reminder.remindAt, reminderFrequency: this.reminder.reminderFrequency });
   this.$router.go(-1);
 }
 
 function cancel() {
   this.$router.go(-1);
+}
+
+function isReminderSet() {
+  return !!(this.reminder.remindAt && this.reminder.reminderFrequency);
 }

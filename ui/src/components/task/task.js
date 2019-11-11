@@ -1,11 +1,12 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTrash, faEdit, faClock } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faEdit, faClock, faRedo } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import TtCheckbox from '@/components/checkbox/checkbox.vue';
 import ConfirmationDialog from '@/components/confirmation-dialog/confirmation-dialog.vue';
 import { mapActions } from 'vuex';
+import { ONCE } from '@/constants/constants.js';
 
-library.add([faTrash, faEdit, faClock]);
+library.add([faTrash, faEdit, faClock, faRedo]);
 
 export default {
   name: 'task',
@@ -28,7 +29,8 @@ export default {
       set(value) {
         this.setTaskStatus({ task: this.task, completed: value });
       }
-    }
+    },
+    once: () => ONCE
   },
   methods: {
     ...mapActions(['deleteTask', 'setTaskStatus']),

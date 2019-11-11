@@ -25,11 +25,20 @@
         </span>
       </div>
     </div>
-    <div v-if="task.cronExpression" class="cronExpression">
-      <span style="margin-right: 5px;">
-        <font-awesome-icon icon="clock" />
-      </span>
-      <span style="font-size: 14px">{{task.cronExpression}}</span>
+    <div v-if="task.remindAt" class="reminder">
+      <div style="display: inline-block; margin-right: 10px">
+        <span style="margin-right: 10px;">
+          <font-awesome-icon icon="clock" />
+        </span>
+        <span style="font-size: 14px">{{task.remindAt | formatDateTime}}</span>
+      </div>
+
+      <div v-if="task.reminderFrequency !== once" class="mt-1" style="display: inline-block">
+        <span style="margin-right: 10px">
+          <font-awesome-icon icon="redo" />
+        </span>
+        <span style="font-size: 14px;">{{task.reminderFrequency}}</span>
+      </div>
     </div>
     <confirmation-dialog v-if="showModal" @close="showModal = false" @yes="onDeleteTaskList"></confirmation-dialog>
   </div>

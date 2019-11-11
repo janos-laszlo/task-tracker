@@ -3,28 +3,14 @@
     <h3>Add Task</h3>
     <form @submit.prevent="onSubmit">
       <input type="text" placeholder="Task..." v-model="title" v-focus />
-      <div>
-        <fieldset>
-          <legend>
-            <h4>
-              <span style="margin-right: 5px">Remind me</span>
-              <font-awesome-icon icon="clock" />
-            </h4>
-          </legend>
-          <div id="cron-expression-container">
-            <cron-expression v-model="cronExpression" />
-          </div>
-          <p>cron:{{cronExpression}}</p>
-          <p>human readable cron: {{humanReadableCron}}</p>
-        </fieldset>
-      </div>
-
-      <div style="margin-top: 5px">
+      <reminder v-model="reminder" />
+      
+      <div class="mt-1">
         <input
           type="submit"
           value="Add"
           class="btn btn-positive"
-          style="margin-right: 5px; width: calc(50% - 5px)"
+          style="margin-right: 10px; width: calc(50% - 10px)"
         />
         <input
           type="button"
