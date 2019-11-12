@@ -30,7 +30,24 @@ div {
 }
 
 .reminder {
-  padding-left: 31px;  
+  padding-left: 31px;
+}
+
+.reminder-icon {
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: top;
+}
+
+.reminder-datetime {
+  display: inline-block;
+  max-width: calc(100% - 21px);
+  font-size: 14px;
+}
+
+.reminder-component {
+  display: inline-block;
+  margin: 0 10px 10px 0;
 }
 
 .task-in-time {
