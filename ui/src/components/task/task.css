@@ -33,3 +33,34 @@ div {
   padding-left: 31px;
   margin-bottom: 10px;
 }
+
+.task-in-time {
+  color: #1b9c8b;
+}
+
+.task-overdue {
+  color: orange;
+  -webkit-animation-name: color-transition;
+  -webkit-animation-duration: 2s;
+  animation-name: color-transition;
+  animation-duration: 2s;
+}
+
+@-webkit-keyframes color-transition {
+  from {
+    color: #1b9c8b;
+  }
+  to {
+    color: orange;
+  }
+}
+
+/* Standard syntax */
+@keyframes color-transition {
+  from {
+    color: #1b9c8b;
+  }
+  to {
+    color: orange;
+  }
+}

@@ -31,7 +31,7 @@
   position: absolute;
   border-left: 5px solid;
   border-bottom: 5px solid;
-  border-color: #43afe3;
+  border-color: #1b9c8b;
   transform: rotate(-45deg) translate3d(0, 0, 0);
   transform-origin: center center;
   transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);

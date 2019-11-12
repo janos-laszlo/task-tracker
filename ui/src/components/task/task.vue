@@ -27,7 +27,7 @@
     </div>
     <div v-if="task.remindAt" class="reminder">
       <div style="display: inline-block; margin-right: 10px">
-        <span style="margin-right: 10px;">
+        <span style="margin-right: 10px;" :class="(new Date(task.remindAt)) < now ? 'task-overdue' : 'task-in-time'">
           <font-awesome-icon icon="clock" />
         </span>
         <span style="font-size: 14px">{{task.remindAt | formatDateTime}}</span>

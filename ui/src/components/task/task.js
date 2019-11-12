@@ -8,6 +8,8 @@ import { ONCE } from '@/constants/constants.js';
 
 library.add([faTrash, faEdit, faClock, faRedo]);
 
+let nowInterval;
+
 export default {
   name: 'task',
   props: ['index', 'task'],
@@ -16,9 +18,10 @@ export default {
     TtCheckbox,
     ConfirmationDialog
   },
-  data(){
+  data() {
     return {
-      showModal: false
+      showModal: false,
+      now: new Date()
     }
   },
   computed: {
@@ -38,6 +41,17 @@ export default {
     openDeleteTaskList,
     onDeleteTaskList,
     onCompletedChange
+  },
+  created() {
+    setTimeout(() => {
+      resetNow.call(this);
+      nowInterval = setInterval(() => {
+        resetNow.call(this);
+      }, 60000);
+    }, 1000 * (60 - (new Date()).getSeconds()));
+  },
+  destroyed() {
+    clearInterval(nowInterval);
   }
 }
 
@@ -58,4 +72,8 @@ function onDeleteTaskList() {
 
 function onCompletedChange(value) {
   console.log(value);
+}
+
+function resetNow() {
+  this.now = new Date();
 }
