@@ -26,15 +26,15 @@
       </div>
     </div>
     <div v-if="task.remindAt" class="reminder">
-      <div style="display: inline-block; margin-right: 10px">
-        <span style="margin-right: 10px;" :class="(new Date(task.remindAt)) < now ? 'task-overdue' : 'task-in-time'">
+      <div style="display: inline-block; margin: 0 10px 10px 0;">
+        <span style="margin-right: 5px;" :class="(new Date(task.remindAt)) < now ? 'task-overdue' : 'task-in-time'">
           <font-awesome-icon icon="clock" />
         </span>
         <span style="font-size: 14px">{{task.remindAt | formatDateTime}}</span>
       </div>
 
-      <div v-if="task.reminderFrequency !== once" style="display: inline-block; padding: 5px 0 0 0">
-        <span style="margin-right: 10px">
+      <div v-if="task.reminderFrequency !== once" style="display: inline-block; margin: 0 10px 10px 0;">
+        <span style="margin-right: 5px">
           <font-awesome-icon icon="redo" />
         </span>
         <span style="font-size: 14px;">{{task.reminderFrequency}}</span>
