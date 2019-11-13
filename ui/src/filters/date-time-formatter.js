@@ -6,11 +6,11 @@ function formatDateTime(dateTime) {
   const d = new Date(dateTime);
   if (d == 'Invalid Date') throw new Error('Invalid Date');
 
-  if (lastWeek(d)) return `Last week, ${getDayName(d)} ${getDateWithSuffix(d.getDate())} at ${d.toTimeString().substr(0,5)}`;
-  if (yesterday(d)) return `Yesterday at ${d.toTimeString().substr(0,5)}`;
-  if (today(d)) return `Today at ${d.toTimeString().substr(0,5)}`;
-  if (tomorrow(d)) return `Tomorrow at ${d.toTimeString().substr(0,5)}`;
-  if (nextWeek(d)) return `Next week, ${getDayName(d)} ${getDateWithSuffix(d.getDate())} at ${d.toTimeString().substr(0,5)}`;
+  if (lastWeek(d)) return `Last week, ${getDayName(d)} ${d.getDate()} at ${d.toTimeString().substr(0, 5)}`;
+  if (yesterday(d)) return `Yesterday at ${d.toTimeString().substr(0, 5)}`;
+  if (today(d)) return `Today at ${d.toTimeString().substr(0, 5)}`;
+  if (tomorrow(d)) return `Tomorrow at ${d.toTimeString().substr(0, 5)}`;
+  if (nextWeek(d)) return `Next week, ${getDayName(d)} ${d.getDate()} at ${d.toTimeString().substr(0, 5)}`;
 
   return ((new Date()).getFullYear() === d.getFullYear() ?
     d.toLocaleString('en-GB', DATE_TIME_FORMATS.DATE_TIME_FORMAT_WITHOUT_YEAR) :
@@ -71,26 +71,4 @@ function getWeekNumber(d) {
   var weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
   // Return array of year and week number
   return weekNo;
-}
-
-function getDateWithSuffix(dateOfMonth) {
-  return dateOfMonth + getDateSuffix(dateOfMonth);
-}
-
-function getDateSuffix(dateOfMonth) {
-  if (typeof (dateOfMonth) !== 'number' || (dateOfMonth < 1 && 31 > dateOfMonth)) throw new Error(`Invalid date of month provided: ${dateOfMonth}`);
-  switch (dateOfMonth) {
-    case 1:
-    case 21:
-    case 31:
-      return `st`;
-    case 2:
-    case 22:
-      return 'nd';
-    case 3:
-    case 23:
-      return 'rd';
-    default:
-      return 'th';
-  }
 }
