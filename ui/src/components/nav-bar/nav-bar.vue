@@ -3,8 +3,9 @@
     <router-link to="/" style="height: 22px;">
         <img src="@/assets/logo.png" class="logo"/>
     </router-link>
-    <a href="#sign-up" class="float-right active">Sign up</a>
-    <a href="#sign-in" class="float-right">Sign in</a>
+    <router-link to="/about" class="float-right">About</router-link>
+    <router-link to="/sign-up" class="float-right">Sign up</router-link>
+    <router-link to="/sign-in" class="float-right">Sign in</router-link>
     <div class="container" v-on:click="toggleMenu()">
       <div class="bar1"></div>
       <div class="bar2"></div>

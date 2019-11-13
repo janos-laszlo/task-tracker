@@ -16,11 +16,7 @@
   font-size: 18px;
 }
 
-.topnav a:hover {
-  color: #27578f;
-}
-
-.topnav a.active {
+.topnav a.router-link-active {
   color: #27578f;
 }
 
@@ -80,7 +76,7 @@
   }
   .topnav.responsive {
     position: relative;
-    height: 160px;
+    height: 210px;
   }
   .topnav.responsive a {
     float: none;
