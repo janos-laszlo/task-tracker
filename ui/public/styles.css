@@ -80,3 +80,7 @@ select {
 .mt-2 {
   margin-top: 20px;
 }
+
+.validation-error {
+  color: orangered;
+}

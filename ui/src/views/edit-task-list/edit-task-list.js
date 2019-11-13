@@ -4,7 +4,8 @@ export default {
   name: "edit-task-list",
   data() {
     return {
-      title: ''
+      title: '',
+      submittedOnce: false
     };
   },
   directives: {
@@ -24,8 +25,9 @@ export default {
   }
 };
 
-function onSubmit(e) {
-  e.preventDefault();
+function onSubmit() {
+  this.submittedOnce = true;
+  if (!formValid.call(this)) return;
   this.updateTaskList({ id: this.$route.params.id, title: this.title });
   this.$router.push('/');
 
@@ -33,4 +35,8 @@ function onSubmit(e) {
 
 function cancel() {
   this.$router.push('/');
+}
+
+function formValid() {
+  return this.title;
 }

@@ -1,8 +1,9 @@
 <template>
   <div class="container">
     <h3>Edit Task List</h3>
-    <form v-on:submit="onSubmit">
+    <form @submit.prevent="onSubmit">
       <input type="text" placeholder="Name..." v-model="title" v-focus />
+      <p class="validation-error" v-show="submittedOnce && !title">Task list title is required.</p>
       <div style="margin-top: 5px">
         <input
           type="submit"

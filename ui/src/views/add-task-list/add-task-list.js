@@ -5,7 +5,8 @@ export default {
   name: "add-task-list",
   data() {
     return {
-      title: ''
+      title: '',
+      submittedOnce: false
     };
   },
   directives: {
@@ -18,13 +19,17 @@ export default {
   },
 };
 
-function onSubmit(e) {
-  e.preventDefault();
+function onSubmit() {
+  this.submittedOnce = true;
+  if (!formValid.call(this)) return;
   this.addTaskList(this.title);
   this.$router.push('/');
-
 }
 
 function cancel() {
   this.$router.go(-1);
+}
+
+function formValid() {
+  return this.title;
 }

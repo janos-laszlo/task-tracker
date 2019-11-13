@@ -14,3 +14,6 @@
 	if year is greater than current the year then .toLocaleString('en-GB', { year: "numeric", month: "short", day: "2-digit", weekday: "short", hour: "2-digit", minute: "2-digit", hour12: false })
 -tasks that are due should have the reminder colored differently
 -when due time comes for a repeated task it will be duplicated and the clone will have the "remindAt" field set to the next occurence of the event
+
+Add task/Edit task
+-form validation

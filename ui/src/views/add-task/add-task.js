@@ -22,22 +22,34 @@ export default {
       reminder: {
         remindAt: null,
         reminderFrequency: null
-      }
+      },
+      submittedOnce: false
     }
   },
 
   methods: {
     ...mapActions(['addTask']),
     onSubmit,
-    cancel
+    cancel,
+    reminderValid
   }
 }
 
 function onSubmit() {
+  this.submittedOnce = true;
+  if (!formValid.call(this)) return;
   this.addTask({ taskListId: this.$route.params.id, task: { title: this.title, remindAt: this.reminder.remindAt, reminderFrequency: this.reminder.reminderFrequency } });
   this.$router.go(-1);
 }
 
 function cancel() {
   this.$router.go(-1);
+}
+
+function formValid() {
+  return this.title && reminderValid.call(this);
+}
+
+function reminderValid() {
+  return (!this.reminder.reminderFrequency || this.reminder.remindAt);
 }

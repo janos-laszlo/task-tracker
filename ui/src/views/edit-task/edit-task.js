@@ -22,7 +22,8 @@ export default {
       reminder: {
         remindAt: null,
         reminderFrequency: null
-      }
+      },
+      submittedOnce: false
     }
   },
   computed: {
@@ -32,7 +33,8 @@ export default {
     ...mapActions(['updateTask']),
     onSubmit,
     cancel,
-    isReminderSet
+    isReminderSet,
+    reminderValid
   },
   created() {
     const task = this.getTask(this.$route.params.id);
@@ -43,6 +45,8 @@ export default {
 }
 
 function onSubmit() {
+  this.submittedOnce = true;
+  if (!formValid.call(this)) return;
   this.updateTask({ id: this.$route.params.id, title: this.title, remindAt: this.reminder.remindAt, reminderFrequency: this.reminder.reminderFrequency });
   this.$router.go(-1);
 }
@@ -53,4 +57,12 @@ function cancel() {
 
 function isReminderSet() {
   return !!(this.reminder.remindAt && this.reminder.reminderFrequency);
+}
+
+function formValid() {
+  return this.title && reminderValid.call(this);
+}
+
+function reminderValid() {
+  return (!this.reminder.reminderFrequency || this.reminder.remindAt);
 }

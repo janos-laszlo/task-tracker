@@ -3,8 +3,9 @@
     <h3>Add Task</h3>
     <form @submit.prevent="onSubmit">
       <input type="text" placeholder="Task..." v-model="title" v-focus />
+      <p class="validation-error" v-show="submittedOnce && !title">A task title is required.</p>
       <reminder v-model="reminder" />
-      
+      <p class="validation-error" v-show="submittedOnce && !reminderValid()">Pick a date and time</p>
       <div class="mt-1">
         <input
           type="submit"
