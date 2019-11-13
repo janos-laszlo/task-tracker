@@ -15,5 +15,5 @@
 -tasks that are due should have the reminder colored differently
 -when due time comes for a repeated task it will be duplicated and the clone will have the "remindAt" field set to the next occurence of the event
 
-Add task/Edit task
--form validation
+
+-CSS of npm packages
