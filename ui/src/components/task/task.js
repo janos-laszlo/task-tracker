@@ -39,8 +39,7 @@ export default {
     ...mapActions(['deleteTask', 'setTaskStatus']),
     goToEditTask,
     openDeleteTaskList,
-    onDeleteTaskList,
-    onCompletedChange
+    onDeleteTaskList
   },
   created() {
     setTimeout(() => {
@@ -67,11 +66,6 @@ function openDeleteTaskList() {
 function onDeleteTaskList() {
   this.showModal = false;
   this.deleteTask({ id: this.task.id, taskListId: this.$route.params.id });
-}
-
-
-function onCompletedChange(value) {
-  console.log(value);
 }
 
 function resetNow() {

@@ -2,4 +2,8 @@ function format(date) {
   return date.toLocaleString();
 }
 
-export { format };
+function isValidDate(d) {
+  return d instanceof Date && !isNaN(d);
+}
+
+export { format, isValidDate };
