@@ -11,13 +11,13 @@
           type="submit"
           value="Add"
           class="btn btn-positive"
-          style="margin-right: 10px; width: calc(50% - 10px)"
+          style="margin-right: 10px; width: calc(50% - 5px)"
         />
         <input
           type="button"
           value="Cancel"
           class="btn btn-negative"
-          style="width: 50%"
+          style="width: calc(50% - 5px)"
           @click="cancel"
           v-shortkey="['esc']"
           @shortkey="cancel"

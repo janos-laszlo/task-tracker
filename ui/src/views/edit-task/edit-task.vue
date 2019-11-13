@@ -7,18 +7,18 @@
       <reminder v-model="reminder" :is-expanded="isReminderSet()"></reminder>
       <p class="validation-error" v-show="submittedOnce && !reminderValid()">Pick a date and time</p>
       
-      <div style="margin-top: 5px">
+      <div style="margin-top: 10px">
         <input
           type="submit"
           value="Apply"
           class="btn btn-positive"
-          style="margin-right: 5px; width: calc(50% - 5px)"
+          style="margin-right: 10px; width: calc(50% - 5px)"
         />
         <input
           type="button"
           value="Cancel"
           class="btn btn-negative"
-          style="width: 50%"
+          style="width: calc(50% - 5px)"
           @click="cancel"
           v-shortkey="['esc']"
           @shortkey="cancel"
