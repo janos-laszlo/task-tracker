@@ -1,10 +1,12 @@
 <template>
   <div id="app">
     <nav-bar></nav-bar>
-    <div class="router-container">
-      <transition name="slide">
-        <router-view />
-      </transition>
+    <div style="padding: 0 10px">
+      <div class="router-container">
+        <transition name="slide">
+          <router-view />
+        </transition>
+      </div>
     </div>
   </div>
 </template>
@@ -22,7 +24,8 @@ export default {
 
 <style scoped>
 .router-container {
-  margin: 10px;
+  max-width: 512px;
+  margin: auto;
 }
 
 /* -enter-active is defined in vue js. slide is the transition name */
