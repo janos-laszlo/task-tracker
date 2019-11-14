@@ -6,7 +6,7 @@
 
     <transition enter-active-class="animated fadeInUp" leave-active-class="animated fadeOutDown">
       <div v-if="remindMe" class="animation-duration mt-1 theme-task-tracker">
-        <datetime v-model="value.remindAt" type="datetime" :format="dateTimeFormat" :min-datetime="(new Date()).toISOString()" />
+        <datetime v-model="value.remindAt" type="datetime" :format="dateTimeFormat" :min-datetime="(new Date()).toISOString()" :minute-step="5"/>
         <select v-model="reminderFrequency" @change="onReminderFrequencyChanged()" class="mt-1">
           <option v-for="frequency in frequencies" :key="frequency">{{frequency}}</option>
         </select>
