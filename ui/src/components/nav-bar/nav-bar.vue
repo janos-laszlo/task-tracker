@@ -3,9 +3,9 @@
     <router-link to="/" style="height: 22px;">
         <img src="@/assets/logo.png" class="logo"/>
     </router-link>
-    <router-link to="/about" class="float-right">About</router-link>
-    <router-link to="/sign-up" class="float-right">Sign up</router-link>
-    <router-link to="/sign-in" class="float-right">Sign in</router-link>
+    <router-link to="/about" class="float-right" @click.native="toggleMenu()">About</router-link>
+    <router-link to="/sign-up" class="float-right" @click.native="toggleMenu()">Sign up</router-link>
+    <router-link to="/sign-in" class="float-right" @click.native="toggleMenu()">Sign in</router-link>
     <div class="container" v-on:click="toggleMenu()">
       <div class="bar1"></div>
       <div class="bar2"></div>
