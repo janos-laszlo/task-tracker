@@ -1,7 +1,8 @@
 export default {
   name: 'nav-bar',
   methods: {
-    toggleMenu
+    toggleMenu,
+    closeMenu
   }
 }
 
@@ -15,4 +16,11 @@ function toggleMenu() {
   }
 
   bars.classList.toggle("change");
+}
+
+function closeMenu() {
+  const x = document.getElementById("myTopnav");
+  const bars = document.querySelector('.container');
+  x.className = "topnav";
+  bars.className = "container";
 }
