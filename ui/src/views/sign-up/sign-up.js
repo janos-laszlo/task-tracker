@@ -24,7 +24,6 @@ export default {
   }
 };
 
-
 function onSubmit() {
   this.submittedOnce = true;
   if (!formValid.call(this)) return;
