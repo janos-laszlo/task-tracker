@@ -20,7 +20,8 @@ body {
   color: #63809e;
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="password"] {
   width: 100%;
   height: 40px;
   padding: 5px 10px;
@@ -32,7 +33,8 @@ input[type="text"] {
   color: #27578f;
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus,
+input[type="password"]:focus {
   border: 1px solid #1b9c8b;
 }
 
@@ -90,7 +92,10 @@ select {
 
 .theme-task-tracker .vdatetime-popup__header,
 .theme-task-tracker .vdatetime-calendar__month__day--selected > span > span,
-.theme-task-tracker .vdatetime-calendar__month__day--selected:hover > span > span {
+.theme-task-tracker
+  .vdatetime-calendar__month__day--selected:hover
+  > span
+  > span {
   background: #43afe3;
 }
 
@@ -108,3 +113,7 @@ select {
 }
 
 /* end vue-datetime theming */
+
+input[type="submit"]:disabled {
+  background: #63809e;
+}
