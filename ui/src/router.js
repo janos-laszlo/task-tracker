@@ -9,41 +9,61 @@ import EditTask from "./views/edit-task/edit-task.vue";
 import About from "./views/about/about.vue";
 import SignUp from "./views/sign-up/sign-up.vue";
 import SignIn from "./views/sign-in/sign-in.vue";
+import PageNotFound from './views/page-not-found/page-not-found.vue';
+import store from './store/index.js';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: "history",
   routes: [
     {
       path: "/",
       name: "task-lists",
-      component: TaskLists
+      component: TaskLists,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: "/add-task-list",
       name: "add-task-list",
-      component: AddTaskList
+      component: AddTaskList,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: "/edit-task-list",
       name: "edit-task-list",
-      component: EditTaskList
+      component: EditTaskList,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: "/task-list/:id",
       name: "task-list",
-      component: TaskList
+      component: TaskList,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: "/add-task/:id",
       name: "add-task",
-      component: AddTask
+      component: AddTask,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: "/edit-task/:id",
       name: "edit-task",
-      component: EditTask
+      component: EditTask,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: "/about",
@@ -59,6 +79,21 @@ export default new Router({
       path: "/sign-in",
       name: "sign-in",
       component: SignIn
+    },
+    {
+      path: "*",
+      component: PageNotFound
     }
   ]
 });
+
+router.beforeEach((to, from, next) => {
+  const x = store.getters['auth/isAuthenticated'];
+  if (!to.meta.requiresAuth || x) {
+    next();
+  } else {
+    next('/sign-in');
+  }
+});
+
+export default router;

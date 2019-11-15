@@ -1,9 +1,11 @@
 const store = {
   state: {
-    credentials: null
+    credentials: JSON.parse(sessionStorage.getItem('credentials')) || null
   },
   getters: {
-
+    isAuthenticated: (state) => {
+      return state.credentials.username && state.credentials.password;
+    }
   },
   actions: {
     signUp,
@@ -31,7 +33,7 @@ async function signUp(context, credentials) {
 async function signIn({ commit }, credentials) {
   return await new Promise((resolve, reject) => {
     if (credentials.username === 'test' && credentials.password === 'test') {
-      commit('storeCredentials');
+      commit('storeCredentials', credentials);
       resolve({ succeeded: true });
     } else {
       reject({ succeeded: false, message: 'Wrong username or password' });
@@ -41,4 +43,5 @@ async function signIn({ commit }, credentials) {
 // mutations
 function storeCredentials(state, credentials) {
   state.credentials = credentials;
+  sessionStorage.setItem('credentials', JSON.stringify(credentials));
 }
