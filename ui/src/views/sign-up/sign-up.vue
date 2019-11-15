@@ -3,11 +3,11 @@
     <h2 style="text-align: center">Sign up</h2>
     <form @submit.prevent="onSubmit">
       <div class="input-group">
-        <input type="text" placeholder="Username" v-model="username" :readonly="!online" @keyup="resetBackendErrors" v-focus />
+        <input type="text" placeholder="Username" v-model="username" :readonly="!online" @keydown="resetBackendErrors" v-focus />
         <span v-show="submittedOnce && !username" class="validation-error">Username required.</span>
       </div>
       <div class="input-group">
-        <input type="password" placeholder="Password" v-model="password" :readonly="!online" @keyup="resetBackendErrors" />
+        <input type="password" placeholder="Password" v-model="password" :readonly="!online" @keydown="resetBackendErrors" />
         <span v-show="submittedOnce && !password" class="validation-error">Password required.</span>
       </div>
 
