@@ -8,8 +8,8 @@ body {
 .btn {
   padding: 5px 10px;
   border: 1px solid #27578f;
-  background: #f4e0e2;
-  color: #27578f;
+  background: #27578f;
+  color: #f4e0e2;
   border-radius: 4px;
   font-weight: bold;
   height: 40px;
@@ -17,7 +17,7 @@ body {
 
 .btn:hover {
   background: #f4e0e2;
-  color: #f4e0e2;
+  color: #27578f;
 }
 
 input[type="text"],
